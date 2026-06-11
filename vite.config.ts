@@ -14,5 +14,6 @@ export default defineConfig({
   ],
   resolve: {
     tsconfigPaths: true
-  }
+  },
+  base: process.env.VITE_BASE_PATH  ?? '/'
 })

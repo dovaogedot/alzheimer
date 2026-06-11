@@ -21,15 +21,21 @@ jobs:
           node-version: 22
           cache: pnpm
 
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm build
-
       - name: Setup SSH
         run: |
           mkdir -p ~/.ssh
           printf "%s" "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H "${{ secrets.VPS_HOST }}" >> ~/.ssh/known_hosts
+
+      - name: Read base url from VPS
+        run: |
+          echo "VITE_BASE_PATH=$(ssh -i ~/.ssh/id_rsa \
+            ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} \
+            'source ~/site/.env; printenv ALZHEIMER_BASE_PATH')" >> $GITHUB_ENV
+
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
 
       - name: Atomic deploy
         run: |
@@ -38,7 +44,7 @@ jobs:
           RELEASE_DIR="$APP_DIR/releases/$TIMESTAMP"
 
           ssh -i ~/.ssh/id_rsa ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} "mkdir -p $RELEASE_DIR"
-          
+
           # copy to VPS
           rsync -az --delete \
             -e "ssh -i ~/.ssh/id_rsa" \
