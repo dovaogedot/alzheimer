@@ -1,4 +1,4 @@
-name: Deploy website
+name: Atomic deploy (rsync)
 
 on:
   push:
@@ -10,32 +10,50 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Add VPS host key
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+
+      - name: Setup SSH
         run: |
           mkdir -p ~/.ssh
-          printf '%s' "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/id_rsa
+          printf "%s" "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H "${{ secrets.VPS_HOST }}" >> ~/.ssh/known_hosts
 
-      - name: Deploy on VPS
+      - name: Atomic deploy
         run: |
-          ssh -o BatchMode=yes -i ~/.ssh/id_rsa "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}" << 'EOF'
+          APP_DIR="/home/${{ secrets.VPS_USER }}/site/alzheimer"
+          TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
+          RELEASE_DIR="$APP_DIR/releases/$TIMESTAMP"
+
+          ssh -i ~/.ssh/id_rsa ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} "mkdir -p $RELEASE_DIR"
+          
+          # copy to VPS
+          rsync -az --delete \
+            -e "ssh -i ~/.ssh/id_rsa" \
+            dist/ \
+            ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:$RELEASE_DIR/
+
+          ssh -i ~/.ssh/id_rsa ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << EOF
             set -e
 
-            APP_DIR="/home/${{ secrets.VPS_USER }}/site/alzheimer"
-            REPO_URL="git@github.com:dovaogedot/alzheimer.git"
+            # switch release
+            ln -sfn $RELEASE_DIR $APP_DIR/current
 
-            if [-d "$APP_DIR/.git" ]; then
-              echo "Repository exists. Pulling latest changes..."
-              cd "$APP_DIR"
-              git pull github main
-            else
-              echo "Repository not found. Cloning..."
-              mkdir -p "$APP_DIR"
-              git clone "$REPO_URL" "$APP_DIR"
-              cd "$APP_DIR"
-            fi
+            echo "Deployment switched to $RELEASE_DIR"
 
-            pnpm install --frozen-lockfile
-            pnpm build
+            # cleanup: keep last 5 releases
+            cd $APP_DIR/releases
+            ls -1dt */ | tail -n +6 | xargs rm -rf || true
           EOF
