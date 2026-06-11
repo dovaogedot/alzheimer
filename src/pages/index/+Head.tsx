@@ -1,4 +1,5 @@
 import { data } from '@data'
+import favicon from '@public/favicon.svg'
 
 export function Head() {
   const description = data.about.split('\n')[0]
@@ -8,7 +9,7 @@ export function Head() {
   const jobTitle = data.title
   const image = `${url}/preview.png`
   const links = data.contacts.map(contact => `${contact.proto}${contact.urn}`)
-  
+
   return <>
     {/* HTML */}
     <html lang="en" className="bg-zinc-950" />
@@ -38,7 +39,7 @@ export function Head() {
     <meta name="twitter:image" content={image} />
 
     {/* Icons & Images */}
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href={favicon} type="image/svg+xml" />
     <meta property="og:image" content="/preview.png" />
 
     {/* Theme */}
