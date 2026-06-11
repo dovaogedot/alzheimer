@@ -1,12 +1,31 @@
 import { Code } from "@components"
+import { Fragment } from "react/jsx-runtime"
+import { ButtonLink } from "./ButtonLink"
 
 /**
  * Renders an individual project detail view.
  */
 export const Project = ({ project }: { project: Project }) => {
   return <>
-    {/* Role & Years */}
     <div className="flex flex-col gap-10">
+
+      {/* Company */}
+      {project.companies && (
+        <div className="flex gap-6 items-center relative w-fit">
+          {project.companies.flatMap((company, idx) => (
+            <Fragment key={company.name}>
+              {idx > 0 && <div className="font-bold text-2xl text-zinc-600">::</div>}
+              <div key={company.name} className="flex items-center bg-zinc-950 text-yellow-300 text-4xl font-extrabold z-10">
+                {company.url
+                  ? <a href={company.url}>{company.name}</a>
+                  : <span>{company.name}</span>}
+              </div>
+            </Fragment>
+          ))}
+        </div>
+      )}
+
+      {/* Role & Years */}
       <div className="flex gap-8 text-xs uppercase tracking-widest">
         <div className="space-y-1">
           <p className="text-zinc-500">Role</p>
@@ -20,6 +39,10 @@ export const Project = ({ project }: { project: Project }) => {
 
       {/* Description */}
       <p className="text-lg text-zinc-400">{project.description}</p>
+
+      {project.id === 'path-rider' && <>
+        <img src="/path-rider.png" alt="Path Rider: Offline Car Game"></img>
+      </>}
 
       {/* Keywords */}
       <div className="flex flex-wrap gap-4">
@@ -40,19 +63,12 @@ export const Project = ({ project }: { project: Project }) => {
       )}
 
       {/* Links */}
-      <div className="flex gap-4">
+      {project.links && <div className="flex gap-4">
         {project.links.map((link, idx) => (
-          link.label.toLowerCase() === 'demo' ? (
-            <a key={idx} href={link.url} className="bg-yellow-300 text-black px-8 py-3 text-xs font-bold uppercase tracking-widest hover:opacity-90 transition-opacity">
-              {link.label}
-            </a>
-          ) : (
-            <a key={idx} href={link.url} className="border border-yellow-300 text-yellow-300 px-8 py-3 text-xs font-bold uppercase tracking-widest hover:bg-yellow-300 hover:text-black transition-colors">
-              {link.label}
-            </a>
-          )
+          <ButtonLink key={idx} href={link.url} text={link.label} type={link.label.toLowerCase() === 'demo' ? 'yellow' : 'black'} />
         ))}
-      </div>
+      </div>}
+
     </div>
   </>
 }

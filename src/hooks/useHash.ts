@@ -10,7 +10,7 @@ export const useHash = () => {
 
       sections.forEach(section => {
         const sectionTop = window.scrollY + section.getBoundingClientRect().top
-        if (window.scrollY >= sectionTop - 120) {
+        if (window.scrollY >= sectionTop - 240) {
           current = section.getAttribute('id') || ''
         }
       })

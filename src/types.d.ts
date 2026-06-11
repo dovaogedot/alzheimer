@@ -1,12 +1,19 @@
 type Project = {
   id: string
-  name: string
+  name: {
+    short: string
+    long?: string
+  },
+  companies?: {
+    name: string
+    url: string
+  }[],
   role: string
   years: string
   keywords: string[]
-  links: ProjectLink[]
+  links?: ProjectLink[]
   description: string
-  usage: string
+  usage?: string
 }
 
 type ProjectLink = {

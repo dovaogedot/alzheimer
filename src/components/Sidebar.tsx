@@ -60,7 +60,7 @@ export const SidebarItem = ({ href, children }: SidebarItemProps) => {
   return <>
     <li>
       <a href={href} className={clsx(
-        "text-lg tracking-widest uppercase outline-none h-8 flex items-center hover:text-yellow-300 transition-all focus:text-yellow-300",
+        "text-lg tracking-widest uppercase outline-none h-8 flex items-center hover:text-yellow-300 transition-all focus-within:text-yellow-300",
         selected ? "font-bold text-yellow-300 gap-2" : undefined
       )}>
         <ArrowRight className={clsx(

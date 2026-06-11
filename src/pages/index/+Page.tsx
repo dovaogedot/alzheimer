@@ -1,7 +1,6 @@
 import './+Page.css'
 import { data } from "@data"
 import { Contact, Footer, Header, Project, Section, Sidebar, SidebarGroup, SidebarItem } from "@components"
-
 /**
  * The root application component containing navigation and main content.
  */
@@ -22,7 +21,7 @@ export default function Page() {
 
           <SidebarGroup label="Projects">
             {data.projects.map(p => (
-              <SidebarItem key={p.id} href={'#' + p.id}>{p.name}</SidebarItem>
+              <SidebarItem key={p.id} href={'#' + p.id}>{p.name.short}</SidebarItem>
             ))}
           </SidebarGroup>
         </Sidebar>
@@ -34,8 +33,12 @@ export default function Page() {
       <main className="ml-64 max-w-3xl flex-1 flex flex-col gap-32 p-16 mb-48">
 
         {/* About */}
-        <Section id="about" title="About">
-          <p className="text-lg text-zinc-400">{data.about}</p>
+        <Section id="about" title="About" className='flex flex-col gap-4'>
+          {data.about.split('\n').map((para, idx) => (
+            <p key={idx} className="text-lg text-zinc-400" dangerouslySetInnerHTML={{
+              __html: para.replaceAll(/\*(.*?)\*/g, '<span class="text-yellow-500 font-bold">$1</span>')
+            }} />
+          ))}
         </Section>
 
         {/* Skills */}
@@ -69,13 +72,9 @@ export default function Page() {
           </ul>
         </Section>
 
-        {/* <div className="mb-16 scroll-mt-24 max-w-2xl">
-            <h2 className="text-[10px] bg-border-dark px-2 py-1 inline-block text-text-main opacity-50 uppercase tracking-widest font-mono">Projects</h2>
-          </div> */}
-
         {/* Projects */}
         {data.projects.map((project) => (
-          <Section key={project.id} id={project.id} title={project.name}>
+          <Section key={project.id} id={project.id} title={project.name.long ?? project.name.short}>
             <Project project={project} />
           </Section>
         ))}
