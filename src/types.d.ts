@@ -3,7 +3,7 @@ type Project = {
   name: string
   role: string
   years: string
-  tags: string[]
+  keywords: string[]
   links: ProjectLink[]
   description: string
   usage: string
@@ -18,11 +18,9 @@ type PortfolioData = {
   name: string
   title: string
   about: string
-  skills: string[]
+  skills: { category: string, skills: string[] }[]
   contacts: {
-    email: string
-    github: string
-    linkedin: string
-  }
+    name: string, proto: string, urn: string
+  }[]
   projects: Project[]
 }
