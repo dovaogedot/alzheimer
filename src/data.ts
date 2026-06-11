@@ -21,8 +21,9 @@ export const data: PortfolioData = {
   ],
   contacts: [
     { name: "Email", proto: "mailto:", urn: "dovaogedot@gmail.com" },
-    { name: "Github", proto: "https://", urn: "github.com/dovaogedot" },
     { name: "LinkedIn", proto: "https://", urn: "linkedin.com/in/dovaogedot" },
+    { name: "Github", proto: "https://", urn: "github.com/dovaogedot" },
+    { name: "Codeberg", proto: "https://", urn: "codeberg.org/dovaogedot" },
   ],
   projects: [
     {
