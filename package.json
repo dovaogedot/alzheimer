@@ -4,10 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
+    "dev": "vike dev",
+    "build": "tsc -b && vike build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vike preview"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.0",
@@ -19,7 +19,9 @@
     "react-markdown": "^10.1.0",
     "react-router": "^7.17.0",
     "rehype-highlight": "^7.0.2",
-    "tailwindcss": "^4.3.0"
+    "tailwindcss": "^4.3.0",
+    "vike": "^0.4.259",
+    "vike-react": "^0.6.24"
   },
   "devDependencies": {
     "@babel/core": "^7.29.0",

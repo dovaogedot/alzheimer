@@ -4,7 +4,7 @@
 @theme {
   --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "Inconsolata", ui-monospace, SFMono-Regular, monospace;
-  --color-yellow-50:  #ffffe6;
+  --color-yellow-50: #ffffe6;
   --color-yellow-100: #ffffbf;
   --color-yellow-200: #ffff80;
   --color-yellow-300: #ffff00;
@@ -36,10 +36,10 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-accent);
+  background: var(--color-yellow-300);
 }
 
 ::selection {
-  background-color: var(--color-accent);
-  color: #000000;
+  background-color: var(--color-yellow-300);
+  color: var(--color-zinc-950);
 }

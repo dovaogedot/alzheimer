@@ -2,7 +2,7 @@
  * Defines the static data for the portfolio.
  */
 export const data: PortfolioData = {
-  name: "dovaogedot",
+  name: "Vladyslav Harvilov",
   title: "Software Engineer",
   about: "Specialized in distributed systems and high-throughput network services. Practitioner of functional paradigms and minimalist architecture. Focused on shipping discrete, maintainable modules.",
   skills: [

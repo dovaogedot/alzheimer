@@ -7,12 +7,17 @@ type HeaderProps = {
  * Header with person's name and title.
  */
 export const Header = ({ name, title }: HeaderProps) => {
+  const nameParts = name.split(' ')
   return <>
     <header>
-      <h1 className="text-2xl font-extrabold tracking-tighter uppercase">
-        <a href='#about' className="text-yellow-300 tracking-widest">{name}</a>
+      <h1 className="text-4xl font-extrabold tracking-tighter uppercase">
+        <a href='#about' className="text-zinc-200 tracking-widest">
+          {nameParts.map((part) => (
+            <div key={part} className="leading-8">{part}</div>
+          ))}
+        </a>
       </h1>
-      <p className="text-sm uppercase tracking-widest opacity-40 mt">{title}</p>
+      <p className="uppercase font-medium tracking-widest text-zinc-600 mt-2">{title}</p>
     </header>
   </>
 }

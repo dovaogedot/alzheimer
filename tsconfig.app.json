@@ -23,7 +23,9 @@
 
     "paths": {
       "@hooks": ["./src/hooks"],
-      "@components": ["./src/components"]
+      "@components": ["./src/components"],
+      "@data": ["./src/data.ts"],
+      "@public": ["./public"]
     }
   },
   "include": ["src"]
