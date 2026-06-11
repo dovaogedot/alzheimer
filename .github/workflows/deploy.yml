@@ -42,7 +42,7 @@ jobs:
           # copy to VPS
           rsync -az --delete \
             -e "ssh -i ~/.ssh/id_rsa" \
-            dist/client \
+            dist/client/ \
             ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:$RELEASE_DIR/
 
           ssh -i ~/.ssh/id_rsa ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << EOF
