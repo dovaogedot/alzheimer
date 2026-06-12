@@ -3,7 +3,7 @@ import { ArrowRight } from "lucide-react"
 import { useContext, createContext } from "react"
 import { useHash } from "@hooks"
 
-const HashContext = createContext('')
+const SectionsContext = createContext<string[]>([])
 
 type SidebarProps = {
   className?: string
@@ -14,14 +14,14 @@ type SidebarProps = {
  * Simple sidebar that tracks current location hash.
  */
 export const Sidebar = ({ className, children }: SidebarProps) => {
-  const currentHash = useHash()
+  const visibleSections = useHash()
 
   return <>
-    <HashContext.Provider value={currentHash}>
+    <SectionsContext.Provider value={visibleSections}>
       <ul className={clsx(className, "flex flex-col gap-8")}>
         {children}
       </ul>
-    </HashContext.Provider>
+    </SectionsContext.Provider>
   </>
 }
 
@@ -54,8 +54,8 @@ type SidebarItemProps = {
 }
 
 export const SidebarItem = ({ href, children }: SidebarItemProps) => {
-  const currentHash = useContext(HashContext)
-  const selected = currentHash === href
+  const visibleSections = useContext(SectionsContext)
+  const selected = visibleSections.includes(href)
 
   return <>
     <li>

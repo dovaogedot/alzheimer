@@ -42,7 +42,7 @@ export const Project = ({ project }: { project: Project }) => {
       <p className="text-lg text-zinc-400">{project.description}</p>
 
       {project.id === 'path-rider' && <>
-        <img src={pathRiderImage} alt="Path Rider: Offline Car Game"></img>
+        <img src={pathRiderImage} alt="Path Rider: Offline Car Game" className="max-w-2xl"></img>
       </>}
 
       {/* Keywords */}

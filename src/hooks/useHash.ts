@@ -1,41 +1,29 @@
 import { useEffect, useState } from "react"
 
 export const useHash = () => {
-  const [currentHash, setCurrentHash] = useState('')
+  const [visibleSections, setVisibleSections] = useState<string[]>([])
 
   useEffect(() => {
-    const handleScroll = () => {
-      const sections = document.querySelectorAll('section[id]')
-      let current = ''
+    const sections = document.querySelectorAll('#scroll-container section[id]')
 
-      sections.forEach(section => {
-        const sectionTop = window.scrollY + section.getBoundingClientRect().top
-        if (window.scrollY >= sectionTop - 240) {
-          current = section.getAttribute('id') || ''
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        const sectionId = '#' + entry.target.id
+        if (entry.isIntersecting) {
+          setVisibleSections(prev => [...prev, sectionId])
+        } else {
+          setVisibleSections(prev => prev.filter(s => s !== sectionId))
         }
       })
+    }, {
+      threshold: 0.8,
+    })
 
-      // If at the bottom of the page, activate the very last section
-      if ((window.innerHeight + Math.round(window.scrollY)) >= document.documentElement.scrollHeight - 10) {
-        const lastSection = sections[sections.length - 1]
-        if (lastSection) {
-          current = lastSection.getAttribute('id') || ''
-        }
-      }
+    sections.forEach(section => observer.observe(section))
+  }, [])
 
-      if (current) {
-        setCurrentHash(`#${current}`)
-      } else if (sections.length > 0) {
-        setCurrentHash(`#${sections[0].getAttribute('id')}`)
-      }
-    }
-
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    // Run once on mount
-    handleScroll()
-
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [currentHash])
-
-  return currentHash
+  // console.log(visibleSections.map(s => s.id))
+  // console.log(visibleSections[0]?.id)
+  console.log(visibleSections)
+  return visibleSections
 }
