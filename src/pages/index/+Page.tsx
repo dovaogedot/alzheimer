@@ -30,7 +30,7 @@ export default function Page() {
         </nav>
 
         {/* Right side / Content */}
-        <main id="section-container" className="shrink-0 w-full xl:min-w-3xl xl:max-w-4xl h-full flex flex-col gap-16 xl:gap-32 p-4 xl:p-16 xl:pb-48 overflow-y-scroll scroll-smooth scrollbar-track-transparent">
+        <main id="section-container" className="shrink-0 w-full xl:min-w-3xl xl:max-w-4xl h-full flex flex-col gap-16 xl:gap-20 p-4 xl:p-16 xl:pb-48 overflow-y-scroll scroll-smooth scrollbar-track-transparent">
           {/* About */}
           <Section id="about" title="About" className='flex flex-col gap-4'>
             {data.about.split('\n').map((para, idx) => (

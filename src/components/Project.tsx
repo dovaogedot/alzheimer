@@ -12,7 +12,7 @@ export const Project = ({ project }: { project: Project }) => {
 
       {/* Company */}
       {project.companies && (
-        <div className="flex gap-2 -mt-4 xl:gap-6 items-center relative overflow-x-scroll">
+        <div className="flex gap-2 xl:gap-6 items-center relative overflow-x-scroll">
           {project.companies.flatMap((company, idx) => (
             <Fragment key={company.name}>
               {idx > 0 && <div className="font-bold text-2xl text-zinc-600">::</div>}

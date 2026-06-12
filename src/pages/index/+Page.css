@@ -17,29 +17,31 @@
   --color-yellow-950: #333300;
 }
 
-html {
-  scroll-behavior: smooth;
-}
+@layer base {
+  ::selection {
+    background-color: var(--color-yellow-300);
+    color: var(--color-zinc-950);
+  }
 
-body {
-  font-family: var(--font-mono);
-  overflow-x: hidden;
-}
+  html {
+    scroll-behavior: smooth;
+  }
 
-/* Custom minimal scrollbar with zero borders or roundness */
-::-webkit-scrollbar {
-  width: 4px;
-}
+  body {
+    font-family: var(--font-mono);
+    overflow-x: hidden;
+  }
 
-::-webkit-scrollbar-track {
-  background: transparent;
-}
+  /* Custom minimal scrollbar with zero borders or roundness */
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
 
-::-webkit-scrollbar-thumb {
-  background: var(--color-yellow-300);
-}
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
 
-::selection {
-  background-color: var(--color-yellow-300);
-  color: var(--color-zinc-950);
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-yellow-300);
+  }
 }
