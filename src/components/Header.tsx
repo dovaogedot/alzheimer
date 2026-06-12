@@ -10,8 +10,11 @@ export const Header = ({ name, title }: HeaderProps) => {
   const nameParts = name.split(' ')
   return <>
     <header>
-      <h1 className="text-4xl font-extrabold tracking-tighter uppercase">
-        <a href='#about' className="text-zinc-200 tracking-widest">
+      <h1 className="text-3xl font-extrabold tracking-tighter uppercase">
+        <a href='#about' className="xl:hidden flex justify-between gap-4 text-zinc-200 tracking-widest">
+          <div className="leading-8">{name}</div>
+        </a>
+        <a href='#about' className="hidden xl:flex flex-col text-zinc-200 tracking-widest">
           {nameParts.map((part) => (
             <div key={part} className="leading-8">{part}</div>
           ))}

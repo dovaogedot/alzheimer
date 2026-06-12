@@ -8,11 +8,11 @@ import pathRiderImage from "@public/path-rider.png"
  */
 export const Project = ({ project }: { project: Project }) => {
   return <>
-    <div className="flex flex-col gap-10">
+    <div className="flex flex-col gap-6 xl:gap-10">
 
       {/* Company */}
       {project.companies && (
-        <div className="flex gap-6 items-center relative w-fit">
+        <div className="flex gap-2 -mt-4 xl:gap-6 items-center relative overflow-x-scroll">
           {project.companies.flatMap((company, idx) => (
             <Fragment key={company.name}>
               {idx > 0 && <div className="font-bold text-2xl text-zinc-600">::</div>}
@@ -46,7 +46,7 @@ export const Project = ({ project }: { project: Project }) => {
       </>}
 
       {/* Keywords */}
-      <div className="flex flex-wrap gap-4">
+      <div className="flex gap-4 overflow-x-scroll">
         {project.keywords.map((skill) => (
           <span key={skill} className="px-3 py-1 border border-zinc-500 text-xs uppercase">
             {skill}
@@ -64,7 +64,7 @@ export const Project = ({ project }: { project: Project }) => {
       )}
 
       {/* Links */}
-      {project.links && <div className="flex gap-4">
+      {project.links && <div className="flex gap-4 overflow-x-scroll">
         {project.links.map((link, idx) => (
           <ButtonLink key={idx} href={link.url} text={link.label} type={link.label.toLowerCase() === 'demo' ? 'yellow' : 'black'} />
         ))}

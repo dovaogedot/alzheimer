@@ -7,13 +7,12 @@ import { Contact, Footer, Header, Project, Section, Sidebar, SidebarGroup, Sideb
 export default function Page() {
   return (
     <div className="h-screen min-h-screen flex justify-center bg-zinc-950 text-zinc-200">
-
-      {/* Left side / Navigation */}
-      <nav className="w-4xl flex justify-end">
-        <div className="h-full w-fit p-8 flex flex-col gap-12 border-r border-zinc-800">
+      <div className="flex flex-col xl:flex-row xl:max-w-fit w-full h-full items-stretch">
+        {/* Left side / Navigation */}
+        <nav className="px-8 py-4 xl:p-8 flex flex-col gap-12 border-b xl:border-r border-zinc-800">
           <Header name={data.name} title={data.title} />
 
-          <Sidebar className="grow">
+          <Sidebar className="hidden xl:flex grow">
             <SidebarGroup label="Basics">
               <SidebarItem href="#about">About</SidebarItem>
               <SidebarItem href="#skills">Skills</SidebarItem>
@@ -27,13 +26,11 @@ export default function Page() {
             </SidebarGroup>
           </Sidebar>
 
-          <Footer />
-        </div>
-      </nav >
+          <Footer className="hidden xl:flex" />
+        </nav>
 
-      {/* Right side / Content */}
-      <main id="scroll-container" className="grow h-full w-full flex overflow-y-scroll scroll-smooth">
-        <div className="max-w-4xl flex flex-col gap-32 p-16 mb-48">
+        {/* Right side / Content */}
+        <main id="section-container" className="shrink-0 w-full xl:min-w-3xl xl:max-w-4xl h-full flex flex-col gap-16 xl:gap-32 p-4 xl:p-16 xl:pb-48 overflow-y-scroll scroll-smooth scrollbar-track-transparent">
           {/* About */}
           <Section id="about" title="About" className='flex flex-col gap-4'>
             {data.about.split('\n').map((para, idx) => (
@@ -45,7 +42,7 @@ export default function Page() {
 
           {/* Skills */}
           <Section id="skills" title="Skills">
-            <ul className="flex justify-between gap-8">
+            <ul className="flex justify-between gap-8 w-fit">
               {data.skills.map(category => (
                 <li key={category.category} className="flex flex-col gap-2">
                   {/* Category Name */}
@@ -65,7 +62,7 @@ export default function Page() {
 
           {/* Contacts */}
           <Section id="contacts" title="Contacts">
-            <ul className="flex flex-col gap-2 text-lg text-zinc-400">
+            <ul className="flex flex-col text-lg text-zinc-400">
               {data.contacts.map(contact => (
                 <li key={contact.name}>
                   <Contact name={contact.name} proto={contact.proto} urn={contact.urn} />
@@ -80,8 +77,10 @@ export default function Page() {
               <Project project={project} />
             </Section>
           ))}
-        </div>
-      </main>
-    </div>
+
+          <Footer className="xl:hidden" />
+        </main>
+      </div>
+    </div >
   )
 }

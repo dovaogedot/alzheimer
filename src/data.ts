@@ -107,17 +107,17 @@ export const data: PortfolioData = {
       name: { short: "Efbet" },
       companies: [
         {
-          name: "Efbet",
-          url: "https://www.linkedin.com/company/efbet-casino-and-sport"
-        },
-        {
           name: "GlobalLogic",
           url: "https://www.globallogic.com/"
         },
         {
           name: "Sportradar",
           url: "https://sportradar.com/"
-        }
+        },
+        {
+          name: "Efbet",
+          url: "https://www.linkedin.com/company/efbet-casino-and-sport"
+        },
       ],
       role: "Full Stack Developer",
       years: "2020-2023",

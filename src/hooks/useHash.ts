@@ -4,7 +4,7 @@ export const useHash = () => {
   const [visibleSections, setVisibleSections] = useState<string[]>([])
 
   useEffect(() => {
-    const sections = document.querySelectorAll('#scroll-container section[id]')
+    const sections = document.querySelectorAll('#section-container section[id]')
 
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
@@ -22,8 +22,5 @@ export const useHash = () => {
     sections.forEach(section => observer.observe(section))
   }, [])
 
-  // console.log(visibleSections.map(s => s.id))
-  // console.log(visibleSections[0]?.id)
-  console.log(visibleSections)
   return visibleSections
 }
