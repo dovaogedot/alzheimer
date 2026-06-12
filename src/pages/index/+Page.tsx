@@ -33,7 +33,7 @@ export default function Page() {
         <main id="section-container" className="shrink-0 w-full xl:min-w-3xl xl:max-w-4xl h-full flex flex-col gap-16 xl:gap-32 p-4 xl:p-16 xl:pb-48 overflow-y-scroll scroll-smooth scrollbar-track-transparent">
           {/* About */}
           <Section id="about" title="About" className='flex flex-col gap-4'>
-            {data.about.split('\n').map(p => { console.log(p); return p}).map((para, idx) => (
+            {data.about.split('\n').map((para, idx) => (
               <p key={idx} className="text-lg text-zinc-400" dangerouslySetInnerHTML={{
                 __html: para
                   .replaceAll(/\*(.*?)\*/g, '<span class="text-yellow-500 font-bold">$1</span>')
