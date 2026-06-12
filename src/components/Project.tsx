@@ -8,7 +8,7 @@ import pathRiderImage from "@public/path-rider.png"
  */
 export const Project = ({ project }: { project: Project }) => {
   return <>
-    <div className="flex flex-col gap-6 xl:gap-10">
+    <div className="flex flex-col gap-6">
 
       {/* Company */}
       {project.companies && (

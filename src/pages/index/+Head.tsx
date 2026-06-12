@@ -1,13 +1,13 @@
 import { data } from '@data'
 import favicon from '@public/favicon.svg'
+import preview from '@public/preview.png'
 
 export function Head() {
-  const description = data.about.split('\n')[0].replaceAll(/[*]/g,'')
+  const description = data.about.split('\n')[0].replaceAll(/[*]/g, '')
   const url = "https://dovaogedot.online"
   const title = `${data.name} - ${data.title}`
   const name = data.name
   const jobTitle = data.title
-  const image = `${url}/preview.png`
   const links = data.contacts.map(contact => `${contact.proto}${contact.urn}`)
 
   return <>
@@ -29,14 +29,14 @@ export function Head() {
     <meta property="og:site_name" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:locale" content="en_US" />
-    <meta property="og:image" content={image} />
+    <meta property="og:image" content={preview} />
     <meta property="og:image:alt" content={`${name}'s portfolio`} />
 
     {/* Twitter */}
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={image} />
+    <meta name="twitter:image" content={preview} />
 
     {/* Icons & Images */}
     <link rel="icon" href={favicon} type="image/svg+xml" />
@@ -56,7 +56,7 @@ export function Head() {
         sameAs: links,
         url,
         jobTitle,
-        image,
+        preview,
       })}
     </script>
   </>

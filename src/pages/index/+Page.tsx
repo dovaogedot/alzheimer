@@ -36,7 +36,7 @@ export default function Page() {
             {data.about.split('\n').map((para, idx) => (
               <p key={idx} className="text-lg text-zinc-400" dangerouslySetInnerHTML={{
                 __html: para
-                  .replaceAll(/\*(.*?)\*/g, '<span class="text-yellow-500 font-bold">$1</span>')
+                  .replaceAll(/\*(.*?)\*/g, '<span class="text-yellow-300 font-bold">$1</span>')
                   .replaceAll(/^(I (\S*))/g, '<span class="text-zinc-100 font-bold">$1</span>')
               }} />
             ))}
