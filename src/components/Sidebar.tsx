@@ -3,7 +3,7 @@ import { ArrowRight } from "lucide-react"
 import { useContext, createContext } from "react"
 import { useVisibleSections } from "@hooks"
 
-const SectionsContext = createContext<Set<string>>(null)
+const SectionsContext = createContext<Set<string>>(null!)
 
 type SidebarProps = {
   className?: string
