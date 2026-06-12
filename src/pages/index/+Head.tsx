@@ -2,7 +2,7 @@ import { data } from '@data'
 import favicon from '@public/favicon.svg'
 
 export function Head() {
-  const description = data.about.split('\n')[0]
+  const description = data.about.split('\n')[0].replaceAll(/[*]/g,'')
   const url = "https://dovaogedot.online"
   const title = `${data.name} - ${data.title}`
   const name = data.name
