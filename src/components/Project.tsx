@@ -13,7 +13,7 @@ export const Project = ({ project }: { project: Project }) => {
       {/* Company */}
       {project.companies && (
         <div className="flex gap-2 xl:gap-6 items-center relative overflow-x-scroll">
-          {project.companies.flatMap((company, idx) => (
+          {project.companies.map((company, idx) => (
             <Fragment key={company.name}>
               {idx > 0 && <div className="font-bold text-2xl text-zinc-600">::</div>}
               <div key={company.name} className="flex items-center bg-zinc-950 text-yellow-300 text-4xl font-extrabold z-10">
@@ -46,9 +46,9 @@ export const Project = ({ project }: { project: Project }) => {
       </>}
 
       {/* Keywords */}
-      <div className="flex gap-4 overflow-x-scroll">
+      <div className="flex gap-2 flex-wrap">
         {project.keywords.map((skill) => (
-          <span key={skill} className="px-3 py-1 border border-zinc-500 text-xs uppercase">
+          <span key={skill} className="grow sm:grow-0 px-3 py-1 border border-zinc-500 text-center text-xs uppercase">
             {skill}
           </span>
         ))}
@@ -64,9 +64,9 @@ export const Project = ({ project }: { project: Project }) => {
       )}
 
       {/* Links */}
-      {project.links && <div className="flex gap-4 overflow-x-scroll">
+      {project.links && <div className="flex justify-between sm:justify-start flex-wrap gap-4 overflow-x-scroll">
         {project.links.map((link, idx) => (
-          <ButtonLink key={idx} href={link.url} text={link.label} type={link.label.toLowerCase() === 'demo' ? 'yellow' : 'black'} />
+          <ButtonLink key={idx} className="grow sm:grow-0" href={link.url} text={link.label} />
         ))}
       </div>}
 

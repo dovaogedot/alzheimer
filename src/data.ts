@@ -16,11 +16,15 @@ I learn by building, and I usually care more about making something useful than 
     },
     {
       category: "Frameworks",
-      skills: ["Cats Effect", "Spring", "React"]
+      skills: ["Cats Effect", "Spring", "React", "Entity Framework"]
     },
     {
       category: "Infrastructure",
-      skills: ["Docker", "PostgreSQL", "SQLite"]
+      skills: ["REST", "Docker", "PostgreSQL", "SQLite", "WebSocket", "Linux"]
+    },
+    {
+      category: "Tools",
+      skills: ["Git", "SSH", "Tailwind"]
     }
   ],
   contacts: [
@@ -83,7 +87,7 @@ I learn by building, and I usually care more about making something useful than 
       role: "Student",
       years: "2025 - 2026",
       description: "An awesome school that gives you a platform for making new friends, finding ideas for new projects and simultaneously improving your coding skills under a heavy time pressure. Can't say that I have put my soul into these projects but it is a cool experience nonetheless.",
-      keywords: ["Java", "Spring", "TypeScript", "React", "REST", "WebSocket"],
+      keywords: ["Java", "Spring", "WebSocket", "TypeScript", "React", "REST"],
       links: [
         { label: "Movie API", url: "https://github.com/dovaogedot/movie-api" },
         { label: "Info Screens", url: "https://github.com/dovaogedot/info-screens" },
@@ -115,15 +119,11 @@ I learn by building, and I usually care more about making something useful than 
           name: "Sportradar",
           url: "https://sportradar.com/"
         },
-        {
-          name: "Efbet",
-          url: "https://www.linkedin.com/company/efbet-casino-and-sport"
-        },
       ],
       role: "Full Stack Developer",
       years: "2020-2023",
       description: "Online casino and match betting website maintenance.",
-      keywords: ["knockout.js", "JavaScript", "C#", "Jenkins", "Drupal", "Jira", "IIS"]
+      keywords: ["knockout.js", "JavaScript", "C#", "Jira", "Jenkins", "IIS", "Drupal"]
     },
     {
       id: "flight-calculator",

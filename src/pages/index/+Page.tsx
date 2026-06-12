@@ -44,7 +44,7 @@ export default function Page() {
 
           {/* Skills */}
           <Section id="skills" title="Skills">
-            <ul className="flex justify-between gap-8 w-fit">
+            <ul className="grid grid-cols-2 md:grid-cols-4 gap-2">
               {data.skills.map(category => (
                 <li key={category.category} className="flex flex-col gap-2">
                   {/* Category Name */}
@@ -66,7 +66,7 @@ export default function Page() {
           <Section id="contacts" title="Contacts">
             <ul className="flex flex-col text-lg text-zinc-400">
               {data.contacts.map(contact => (
-                <li key={contact.name}>
+                <li key={contact.name} className="w-full">
                   <Contact name={contact.name} proto={contact.proto} urn={contact.urn} />
                 </li>
               ))}

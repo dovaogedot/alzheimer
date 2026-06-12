@@ -10,10 +10,10 @@ type ContactProps = {
 export const Contact = ({ name, proto, urn }: ContactProps) => {
   return <>
     <a href={proto + urn} target="_blank" rel="noreferrer"
-      className="inline-flex justify-between items-center gap-4 hover:text-yellow-300 transition-colors outline-none focus:text-yellow-300"
+      className="w-full flex items-center hover:text-yellow-300 transition-colors outline-none focus:text-yellow-300"
     >
-      <span className="text-yellow-300 min-w-24">{name}</span>
-      <span>{urn}</span>
+      <span className="text-yellow-300 min-w-24 shrink-0">{name}</span>
+      <span className="truncate">{urn}</span>
     </a>
   </>
 }
