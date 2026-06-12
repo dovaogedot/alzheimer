@@ -1,9 +1,9 @@
 import clsx from "clsx"
 import { ArrowRight } from "lucide-react"
 import { useContext, createContext } from "react"
-import { useHash } from "@hooks"
+import { useVisibleSections } from "@hooks"
 
-const SectionsContext = createContext<string[]>([])
+const SectionsContext = createContext<Set<string>>(null)
 
 type SidebarProps = {
   className?: string
@@ -14,7 +14,7 @@ type SidebarProps = {
  * Simple sidebar that tracks current location hash.
  */
 export const Sidebar = ({ className, children }: SidebarProps) => {
-  const visibleSections = useHash()
+  const visibleSections = useVisibleSections()
 
   return <>
     <SectionsContext.Provider value={visibleSections}>
@@ -55,12 +55,12 @@ type SidebarItemProps = {
 
 export const SidebarItem = ({ href, children }: SidebarItemProps) => {
   const visibleSections = useContext(SectionsContext)
-  const selected = visibleSections.includes(href)
+  const selected = visibleSections.has(href)
 
   return <>
     <li>
       <a href={href} className={clsx(
-        "text-lg tracking-widest uppercase outline-none h-8 flex items-center hover:text-yellow-300 transition-all focus-within:text-yellow-300",
+        "text-lg tracking-widest uppercase outline-none h-8 flex items-center transition-colors hover:text-yellow-300 focus-within:text-yellow-300",
         selected ? "font-bold text-yellow-300 gap-2" : undefined
       )}>
         <ArrowRight className={clsx(
