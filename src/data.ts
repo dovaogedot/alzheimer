@@ -4,10 +4,11 @@
 export const data: PortfolioData = {
   name: "Vladyslav Harvilov",
   title: "Software Engineer",
-  about: `I am a software engineer who has experience with *backend*, *frontend*, and *full-stack* work, mostly with *Java*, *TypeScript*, *React*, and *C#*.
-  Over the years, I have worked on *business systems*, *web apps*, and side projects of my own. Some of those were serious production systems, like *flight cost calculating* and *online betting platforms*. Others were just built because I wanted to try an idea, learn something new, or make a tool that solves a small personal problem in a better way.
-  I have also spent a lot of time with *Scala* and *Rust* because I like their functional side. I prefer writing code in functional style but have no problems with adapting to any existing style.
-  I like code that is clear, modular, and easy to expand. I enjoy learning by building, and I usually care more about making something useful than making it look fancy.`,
+  about: `I am a software engineer experienced in writing *business systems*, *web apps* and internal *tooling*. I have mostly worked with *C#*, *TypeScript*, *React* and *Java*.
+I have a few small side projects that I built because I wanted to try an idea, learn something new, or make a tool that solves a small personal problem in a better way.
+I enjoy programming in *Scala* and *Rust* because I like their functional side but I have no problems with adapting to any existing code style.
+I believe that code should be human-oriented, modular and easy to expand.
+I learn by building, and I usually care more about making something useful than making it look fancy.`,
   skills: [
     {
       category: "Languages",
